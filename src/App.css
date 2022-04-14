@@ -1,38 +1,103 @@
 .App {
   text-align: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+	padding: 0;
+  background: linear-gradient(#0a3481, #1d7deb);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.ui-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.774);
+  box-sizing: border-box;
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ui-form h3 {
+  position: relative;
+  z-index: 5;
+  margin: 0 0 60px;
+  text-align: center;
+  color: #0a3481;
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
-.App-link {
-  color: #61dafb;
+.form-group {
+  position: relative;
+  margin-bottom: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-group input {
+  display: block;
+  width: 100%;
+  line-height: 40px;
+  background: none;
+  border-width: 0;
+  border-bottom: 2px solid #0a3481;
+}
+
+.form-group label {
+  position: absolute;
+  left: 0px;
+  color: #1d7debc0;
+  font-weight: 100;
+  font-size: 20px;
+  transform: translateY(-35px);
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus {
+  outline: 0;
+  border-color: #0a3481;
+}
+
+.form-group input:focus+label, .form-group input:valid+label {
+  transform: translateY(-60px);
+  font-size: 14px;
+  font-weight: 100;
+  outline: 0;
+  border-color: #0a3481;
+  color: #0a3481;
+}
+
+#submit {
+  width: 100%;
+  line-height: 52px;
+  border-radius: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  background: linear-gradient(0deg, #1d7deb 0%, #0a3481 100%);
+  border: none;
+}
+#submit:hover {
+  background: linear-gradient(0deg, #0a3481 0%, #1d7deb 100%);
+}
+
+.ui-form p {
+  margin: 0;
+  padding-top: 20px;
+}
+
+a {
+  margin: 10px;
+  color: #1d7debc0;
+  text-decoration: none;
 }

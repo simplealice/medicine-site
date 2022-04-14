@@ -1,0 +1,25 @@
+th, td {
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: #0a3481;
+}
+section {
+    margin-top: 30px;
+}
+table {
+    background: white;
+    max-width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+}
+th {
+    color: #0a3481;
+    border-bottom: 2px solid #0a3481;
+    padding: 10px 8px;
+    flex-grow: 1;
+    background: #dce0e3
+}
+td {
+    color: #669;
+    padding: 9px 8px;
+}

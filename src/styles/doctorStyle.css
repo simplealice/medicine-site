@@ -1,0 +1,73 @@
+#headShell {
+    height: 150px;
+    display: inline-block;
+}
+
+#title {
+    font-size: 50px;
+    margin-top: 50px;
+    text-align: center;
+    color: #0a3481;
+}
+
+#exitShell {
+    margin-top: 200px;
+    height: 50px;
+    display: inline-block;
+}
+
+nav {
+    background: rgb(16, 176, 240);
+    box-shadow: 0 2px 0 0 rgb(15, 134, 182);
+    border-top: 1px solid rgb(24, 190, 255);
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    display: block;
+    transition: .3s linear;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.topmenu > li {
+    display: inline-block;
+    position: relative;
+    margin-right: -4px;
+    border-left: 1px solid rgb(15, 134, 182);
+}
+
+.topmenu > li:last-child {border-right: 1px solid rgb(15, 134, 182);}
+
+.topmenu > li > a {
+    font-weight: bold;
+    padding: 20px 30px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #ffffff;
+}
+  
+.active:after {
+    font-family: "FontAwesome";
+    margin-left: 10px;
+}
+
+.topmenu .active, .topmenu > li > a:hover {color: #0a3481;}
+
+#welcome {
+    margin-top: 50px;
+    text-align: center;
+    color: #0a3481;
+}
+
+#textOnPage {
+    margin-top: 50px;
+    text-align: center;
+    color: #0a3481;
+}
