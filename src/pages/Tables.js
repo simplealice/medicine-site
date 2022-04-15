@@ -55,9 +55,9 @@ function Tables() {
               <thead>
                 <tr>
                   <th>id</th>
-                  <th>firstName</th>
+                  {/* <th>firstName</th>
                   <th>lastName</th>
-                  <th>patronymic</th>
+                  <th>patronymic</th> */}
                   <th>wellBeing</th>
                   <th>mood</th>
                   <th>activity</th>
@@ -70,9 +70,9 @@ function Tables() {
                   personsResults.map((result) =>
                   <tr key={result.rowId}>
                     <td><a href="patient">{result.rowId}</a></td>
-                    <td>{person.id==result.rowId?person.firstName:""}</td>
+                    {/* <td>{person.id==result.rowId?person.firstName:""}</td>
                     <td>{person.lastName}</td>
-                    <td>{person.patronymic}</td>
+                    <td>{person.patronymic}</td> */}
                     <td>{result.wellBeing}</td>
                     <td>{result.mood}</td>
                     <td>{result.activity}</td>

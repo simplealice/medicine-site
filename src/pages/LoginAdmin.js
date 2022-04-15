@@ -10,6 +10,7 @@ function LoginAdmin() {
   const loginRegex = /^[a-zA-Z0-9]{4,11}$/;
   const passwordRegex = /^[a-zA-Z0-9!@#$%^+=]{4,}$/;
   const login_api = 'https://telesfor.herokuapp.com/login';
+  //const login_api = 'https://atk.onpoz.ru/react';
 
   const [login, setLogin] = useState('')
   const [validLogin, setValidLogin] = useState(false)
@@ -55,15 +56,30 @@ function LoginAdmin() {
         return;
     }
     try {
-        const response = axios.post(login_api, 
+        // const params = new URLSearchParams();
+        // params.append('username', 'admin');
+        // params.append('password', 'admin');
+        // console.log(params)
+        axios.post(login_api, 
             {
-                username: login,
-                password: password
+              username: login,
+              password: password
             }
-        ).then(response => {
+        ).then(function (response) {
             console.log(response);
+            setSuccess(true);
+          })
+          .catch(function (error) {
+            console.log(error);
           });
-        setSuccess(true);
+
+        // const res = axios.post(
+        // 'https://telesfor.herokuapp.com/login',
+        // params
+        // ).then(
+        // r => console.log(r)
+        // ).catch(console.log);
+        // setSuccess(true);
     } catch (err) {
         console.log(err);
         if(!err?.response) {

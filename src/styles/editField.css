@@ -1,0 +1,23 @@
+Modal {
+    background: #fff;
+
+    /* Установим по умолчанию ширину 600px
+    но она будет не больше ширины браузера */
+    width: 600px;
+    max-width: 100%;
+
+    /* Заготовка для будущих анимаций */
+    transition: transform 0.15s ease 0s, opacity 0.15s ease 0s;
+    transform: scale(1);
+}
+
+ModalHeader {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(0.3rem - 1px);
+    border-top-right-radius: calc(0.3rem - 1px);
+}
