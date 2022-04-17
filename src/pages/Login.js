@@ -51,46 +51,46 @@ function Login() {
     const v1 = phoneRegex.test(phone);
     const v2 = passwordRegex.test(password);
     if (!v1 || !v2) {
-        setErrorMessage("Invalid Entry");
-        return;
+      setErrorMessage("Invalid Entry");
+      return;
     }
     try {
-        const response = await axios.post(login_api, 
-            {
-              username: phone,
-              password: password
-            }
-        );
-        console.log(response.data);
-        console.log(response.accessToken);
-        console.log(JSON.stringify(response));
-        setSuccess(true);
-    } catch (err) {
-        console.log(err);
-        if(!err?.response) {
-            setErrorMessage('No server response');
-        } else {
-            setErrorMessage('Sign in failed')
+      const response = await axios.post(login_api,
+        {
+          username: phone,
+          password: password
         }
+      );
+      console.log(response.data);
+      console.log(response.accessToken);
+      console.log(JSON.stringify(response));
+      setSuccess(true);
+    } catch (err) {
+      console.log(err);
+      if (!err?.response) {
+        setErrorMessage('No server response');
+      } else {
+        setErrorMessage('Sign in failed')
+      }
     }
-}
+  }
 
   return (
     <>
-    {
-      success ? (
+      {
+        success ? (
           <Navigate to="/lkdoctor" />
-      ) : (
+        ) : (
           <div className="Login">
             <div className="container">
               <form className="ui-form" name="a" onSubmit={(e) => handleSubmit(e)}>
                 <p ref={errRef} className={errorMessage ? "errmsg" : "offscreen"} aria-live="assertive">{errorMessage}</p>
                 <h3>Вход</h3>
                 <div className="form-group">
-                  <input type="text" id="phone" ref={userRef} autoComplete="off" 
-                  onChange={(e) => setPhone(e.target.value)} required 
-                  aria-invalid={validPhone ? "false" : "true"} aria-describedby="uidnote" 
-                  onFocus={() => setPhoneFocus(true)} />
+                  <input type="text" id="phone" ref={userRef} autoComplete="off"
+                    onChange={(e) => setPhone(e.target.value)} required
+                    aria-invalid={validPhone ? "false" : "true"} aria-describedby="uidnote"
+                    onFocus={() => setPhoneFocus(true)} />
                   <label htmlFor="phone">Номер телефона</label>
                   {phoneFocus && phone && !validPhone && (
                     <p id="uidnote">
@@ -101,20 +101,20 @@ function Login() {
                 </div>
                 <div className="form-group">
                   <input type="password" id="password"
-                  onChange={(e) => setPassword(e.target.value)} required 
-                  aria-invalid={validPassword ? "false" : "true"} />
+                    onChange={(e) => setPassword(e.target.value)} required
+                    aria-invalid={validPassword ? "false" : "true"} />
                   <label htmlFor="password">Пароль</label>
                 </div>
-                <a className="forget" href="https://google.com/search">Забыли пароль?</a>
+                {/* <a className="forget" href="https://google.com/search">Забыли пароль?</a> */}
                 <a className="forget" href="/loginadmin">Я администратор</a>
                 <p>
                   <input type="submit" id="submit" disabled={!validPhone || !validPassword ? true : false}
-                  value="Войти" />
+                    value="Войти" />
                 </p>
               </form>
             </div>
           </div>
-    )}
+        )}
     </>
   );
 }

@@ -16,11 +16,11 @@ function LKDoctor() {
   const getDoctors = () => {
     try {
       axios.get('https://telesfor-noauth.herokuapp.com/api/users/current')
-      .then((response) => {
-      console.log(response.data);
-      setDoctors(response.data);
-    });
-    setLoading(true);
+        .then((response) => {
+          console.log(response.data);
+          setDoctors(response.data);
+        });
+      setLoading(true);
     } catch (error) {
       console.log(error);
     }
@@ -50,7 +50,7 @@ function LKDoctor() {
       return response;
     });
   }
-  
+
   var item = [];
   var res = foo().then(function (response) {
     item.push(response.data[1]);
@@ -61,7 +61,7 @@ function LKDoctor() {
   //   var editBtn = document.getElementById('editBtn');
   //   var editable = document.getElementById('title');
   //   // var editables = document.querySelectorAll('#title, #author, #content')
-    
+
   //   editBtn.addEventListener('click', function(e) {
   //     if (editable.isContentEditable) {
   //       console.log(false)
@@ -122,85 +122,84 @@ function LKDoctor() {
   return (
     <div className="Login">
       <div id="headShell">
-            <h1 id="title">Telesfor</h1>
-        </div>
-        <nav>
-            <ul className="topmenu">
-              <li><a href="lkdoctor" className="active">Личный кабинет</a></li>
-              <li><a href="patients">Мои пациенты</a></li>
-              <li><a href="tables">Опросник</a></li>
-            </ul>
-        </nav>
-        <div id="avatarShell">
-          <h2 id="textOnPage">Личный кабинет</h2>
-          <div className="obsh">
-            <div className="photoShell">
-              <div><img className="avatar" src={image}></img></div>
-              <EditField toggle={toggle} modal={modal} />
-              <div><button id="editBtn" onClick={onOpenFileDialog} className="editBtn" type="button">Сменить фото</button></div>
+        <h1 id="title">Telesfor</h1>
+      </div>
+      <div className="exit"><a href="/">Выход</a></div>
+      <nav>
+        <ul className="topmenu">
+          <li><a href="lkdoctor" className="active">Личный кабинет</a></li>
+          <li><a href="patients">Мои пациенты</a></li>
+          <li><a href="tables">Опросник</a></li>
+        </ul>
+      </nav>
+      <div id="avatarShell">
+        <h2 id="textOnPage">Личный кабинет</h2>
+        <div className="obsh">
+          <div className="photoShell">
+            <div><img className="avatar" src={image}></img></div>
+            <EditField toggle={toggle} modal={modal} />
+            <div><button id="editBtn" onClick={onOpenFileDialog} className="editBtn" type="button">Сменить фото</button></div>
 
-              <a href="#">
-                <input
-                    type="file"
-                    onChange={onProcessFile}
-                    ref={fileInput}
-                    hidden={true}
-                />
+            <a href="#">
+              <input
+                type="file"
+                onChange={onProcessFile}
+                ref={fileInput}
+                hidden={true}
+              />
             </a>
-            </div>
-              {/* <img className="avatar" src="https://womenstalk.ru/wp-content/uploads/plus/2017/11/2-87.jpg"></img>
+          </div>
+          {/* <img className="avatar" src="https://womenstalk.ru/wp-content/uploads/plus/2017/11/2-87.jpg"></img>
               <button id="editBtn" className="editBtn" type="button">Edit Document</button> */}
-              {/* <div contentEditable="false" id="nameField">Name: </div> */}
-              {/* <div id="nameField">Name: </div> */}
-              {/* <h2 className="note__title"> Text title </h2>
+          {/* <div contentEditable="false" id="nameField">Name: </div> */}
+          {/* <div id="nameField">Name: </div> */}
+          {/* <h2 className="note__title"> Text title </h2>
               <p className="note__body"> Text body </p>
               <button id="nameField" disabled={btnClicked ? false : true}>Name: </button>
               <button id="btnEditName" onClick={() => btnclk}><b className="editIcon">&#9998;</b></button> */}
-              
-                {/* <button id="editBtn" type="button" onClick={() => changeText()}>Edit Document</button> */}
-                
-                {/* <div className="firstNameShell">
+
+          {/* <button id="editBtn" type="button" onClick={() => changeText()}>Edit Document</button> */}
+
+          {/* <div className="firstNameShell">
                     <p className="firstNameTitle" id="firstNameTitle">Имя: </p>
                     <input defaultValue={item.at(1)} className="firstName" id="firstName">{item.at(1)}</input>
                     <b className="editIcon">&#9998;</b>
                   </div> */}
 
 
-            {/* { 
+          {/* { 
               doctors.map(doctor => <div> */}
-                <div className="editor" id="editor">
-                  <div className="firstNameShell">
-                    <p className="firstNameTitle" id="firstNameTitle">Имя: </p>
-                    <input defaultValue="Лев" className="firstName" id="firstName"/>
-                    <b className="editIcon" onClick={() => setModal(true)}>&#9998;</b>
-                  </div>
-                  <div className="lastNameShell">
-                    <p className="lastNameTitle" id="lastNameTitle">Фамилия: </p>
-                    <input defaultValue="Мишуткин" className="lastName" id="lastName"/>
-                    <b className="editIcon">&#9998;</b>
-                  </div>
-                  <div className="patronymicShell">
-                    <p className="patronymicTitle" id="patronymicTitle">Отчество: </p>
-                    <input defaultValue="Евгеньевич" className="patronymic" id="patronymic"/>
-                    <b className="editIcon">&#9998;</b>
-                  </div>
-                  <div className="educationShell">
-                    <p className="educationTitle" id="educationTitle">Образование: </p>
-                    <input defaultValue="a" className="education" id="education"/>
-                    <b className="editIcon">&#9998;</b>
-                  </div>
-                  <div className="workExperienceShell">
-                    <p className="workExperienceTitle" id="workExperienceTitle">Опыт работы: </p>
-                    <input defaultValue="a" className="workExperience" id="workExperience"/>
-                    <b className="editIcon">&#9998;</b>
-                  </div>
-                </div>
-              {/* </div>)
-            } */}
+          <div className="editor" id="editor">
+            <div className="lastNameShell">
+              <p className="lastNameTitle" id="lastNameTitle">Фамилия: </p>
+              <input defaultValue="Мишуткин" className="lastName" id="lastName" />
+              <b className="editIcon">&#9745;</b>
+            </div>
+            <div className="firstNameShell">
+              <p className="firstNameTitle" id="firstNameTitle">Имя: </p>
+              <input defaultValue="Лев" className="firstName" id="firstName" />
+              <b className="editIcon" onClick={() => setModal(true)}>&#9745;</b>
+            </div>
+            <div className="patronymicShell">
+              <p className="patronymicTitle" id="patronymicTitle">Отчество: </p>
+              <input defaultValue="Евгеньевич" className="patronymic" id="patronymic" />
+              <b className="editIcon">&#9745;</b>
+            </div>
+            <div className="educationShell">
+              <p className="educationTitle" id="educationTitle">Образование: </p>
+              <input defaultValue="РНИМУ им. Н.И. Пирогова: 2000-2006" className="education" id="education" />
+              <b className="editIcon">&#9745;</b>
+            </div>
+            <div className="workExperienceShell">
+              <p className="workExperienceTitle" id="workExperienceTitle">Опыт работы: </p>
+              <input defaultValue="8 лет" className="workExperience" id="workExperience" />
+              <b className="editIcon">&#9745;</b>
+            </div>
           </div>
-          
-            <div><a href="/">Выход</a></div>
+          {/* </div>)
+            } */}
         </div>
+      </div>
     </div>
   );
 }

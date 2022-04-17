@@ -6,6 +6,38 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './routs/AuthProvider';
 
+
+
+// import Form from './modals/Form';
+
+// const inputs = [{
+//   name: "username",
+//   placeholder: "username",
+//   type: "text"
+// },{
+//   name: "password",
+//   placeholder: "password",
+//   type: "password"
+// },{
+//   type: "submit",
+//   value: "Submit",
+//   className: "btn" 
+// }]
+
+// const props = {
+//   name: 'loginForm',
+//   url: 'https://telesfor.herokuapp.com/login',
+//   method: 'POST',
+//   action: '/perform_login',
+//   inputs: inputs
+// }
+
+// const params = new URLSearchParams(window.location.search)
+
+// ReactDOM.render(
+//   <Form {...props} error={params.get('error')} />,
+//   document.getElementById('container'))
+
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

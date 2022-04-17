@@ -12,11 +12,12 @@ function Doctors() {
   const getDoctors = () => {
     try {
       axios.get('https://telesfor-noauth.herokuapp.com/api/users/doctors')
-      .then((response) => {
-      console.log(response.data);
-      setDoctors(response.data);
-    });
-    setLoading(true);
+      //axios.get('https://telesfor.herokuapp.com/api/users/doctors')
+        .then((response) => {
+          console.log(response.data);
+          setDoctors(response.data);
+        });
+      setLoading(true);
     } catch (error) {
       console.log(error);
     }
@@ -25,19 +26,20 @@ function Doctors() {
   useEffect(() => {
     getDoctors();
   }, []);
-   
+
   const deleteHandler = (props) => {
     axios.delete(`http://localhost:3000/api/v1/product?id=${props}`)
-    .then(res => {
-      console.log('Deleted Successfully.');
-    })
+      .then(res => {
+        console.log('Deleted Successfully.');
+      })
   }
 
   return (
     <div className="Login">
       <div id="headShell">
-            <h1 id="title">Telesfor</h1>
+        <h1 id="title">Telesfor</h1>
       </div>
+      <div className="exit"><a href="/">Выход</a></div>
       <nav>
         <ul className="topmenu">
           <li><a href="lkadmin">Личный кабинет</a></li>
@@ -45,18 +47,18 @@ function Doctors() {
           <li><a href="patientsadmin">Пациенты</a></li>
         </ul>
       </nav>
-            
-      { loading ? (
+
+      {loading ? (
         <div id="avatarShell">
           <h1 id="textOnPage">Врачи</h1>
           <ul className="doctorslist">
-          { 
-            doctors.map(doctor => <li key={doctor.id}>{doctor.firstName + " " + doctor.lastName + " " + doctor.patronymic}
-              <Link to={'#'} onClick={() => {if(window.confirm('Вы подтверждаете удаление?')){deleteHandler(doctor.id)};}}> 
-                <b className="deleteIcon">&#128465;</b> 
-              </Link>
-            </li>)
-          }
+            {
+              doctors.map(doctor => <li key={doctor.id}>{doctor.firstName + " " + doctor.lastName + " " + doctor.patronymic}
+                <Link to={'#'} onClick={() => { if (window.confirm('Вы подтверждаете удаление?')) { deleteHandler(doctor.id) }; }}>
+                  <b className="deleteIcon">&#128465;</b>
+                </Link>
+              </li>)
+            }
           </ul>
           {/* <div className="preloader">
 			    <img className="heart" src="https://res.cloudinary.com/dejzo3x6l/image/upload/v1468422552/heart_qwl5in.svg" alt="heart" />
@@ -64,8 +66,8 @@ function Doctors() {
         </div>
       ) : (
         <div className="preloader">
-			    <img className="heart" src="https://res.cloudinary.com/dejzo3x6l/image/upload/v1468422552/heart_qwl5in.svg" alt="heart" />
-		    </div>
+          <img className="heart" src="https://res.cloudinary.com/dejzo3x6l/image/upload/v1468422552/heart_qwl5in.svg" alt="heart" />
+        </div>
       )}
     </div>
   );

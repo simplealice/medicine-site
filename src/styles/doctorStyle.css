@@ -10,6 +10,12 @@
     color: #0a3481;
 }
 
+.exit {
+    text-align: right;
+    margin-right: 20px;
+    padding-bottom: 20px;
+}
+
 #exitShell {
     margin-top: 200px;
     height: 50px;
