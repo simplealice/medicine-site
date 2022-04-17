@@ -178,7 +178,7 @@ function LKDoctor() {
             <div className="firstNameShell">
               <p className="firstNameTitle" id="firstNameTitle">Имя: </p>
               <input defaultValue="Лев" className="firstName" id="firstName" />
-              <b className="editIcon" onClick={() => setModal(true)}>&#9745;</b>
+              <b className="editIcon">&#9745;</b>
             </div>
             <div className="patronymicShell">
               <p className="patronymicTitle" id="patronymicTitle">Отчество: </p>

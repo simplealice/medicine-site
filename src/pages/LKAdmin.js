@@ -73,30 +73,30 @@ function LKAdmin() {
           </div>
 
           <div className="editor" id="editor">
+          <div className="lastNameShell">
+              <p className="lastNameTitle" id="lastNameTitle">Фамилия: </p>
+              <input defaultValue="Мишуткин" className="lastName" id="lastName" />
+              <b className="editIcon">&#9745;</b>
+            </div>
             <div className="firstNameShell">
               <p className="firstNameTitle" id="firstNameTitle">Имя: </p>
-              <input defaultValue="a" className="firstName" id="firstName" />
-              <b className="editIcon">&#9998;</b>
-            </div>
-            <div className="lastNameShell">
-              <p className="lastNameTitle" id="lastNameTitle">Фамилия: </p>
-              <input defaultValue="a" className="lastName" id="lastName" />
-              <b className="editIcon">&#9998;</b>
+              <input defaultValue="Лев" className="firstName" id="firstName" />
+              <b className="editIcon">&#9745;</b>
             </div>
             <div className="patronymicShell">
               <p className="patronymicTitle" id="patronymicTitle">Отчество: </p>
-              <input defaultValue="a" className="patronymic" id="patronymic" />
-              <b className="editIcon">&#9998;</b>
+              <input defaultValue="Евгеньевич" className="patronymic" id="patronymic" />
+              <b className="editIcon">&#9745;</b>
             </div>
             <div className="educationShell">
               <p className="educationTitle" id="educationTitle">Образование: </p>
-              <input defaultValue="a" className="education" id="education" />
-              <b className="editIcon">&#9998;</b>
+              <input defaultValue="РНИМУ им. Н.И. Пирогова: 2000-2006" className="education" id="education" />
+              <b className="editIcon">&#9745;</b>
             </div>
             <div className="workExperienceShell">
               <p className="workExperienceTitle" id="workExperienceTitle">Опыт работы: </p>
-              <input defaultValue="a" className="workExperience" id="workExperience" />
-              <b className="editIcon">&#9998;</b>
+              <input defaultValue="8 лет" className="workExperience" id="workExperience" />
+              <b className="editIcon">&#9745;</b>
             </div>
           </div>
         </div>

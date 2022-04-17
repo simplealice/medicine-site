@@ -7,7 +7,7 @@ function Login() {
   const userRef = useRef();
   const errRef = useRef();
 
-  const phoneRegex = /^((\+7)+([0-9]){10})$/;
+  const phoneRegex = /^((7)+([0-9]){10})$/;
   const passwordRegex = /^[a-zA-Z0-9!@#$%^+=]{4,}$/;
   const login_api = 'https://telesfor.herokuapp.com/login';
 
@@ -55,16 +55,40 @@ function Login() {
       return;
     }
     try {
-      const response = await axios.post(login_api,
-        {
-          username: phone,
-          password: password
-        }
-      );
-      console.log(response.data);
-      console.log(response.accessToken);
-      console.log(JSON.stringify(response));
-      setSuccess(true);
+      // const response = await axios.post(login_api,
+      //   {
+      //     username: phone,
+      //     password: password
+      //   }
+      // );
+      // console.log(response.data);
+      // console.log(response.accessToken);
+      // console.log(JSON.stringify(response));
+      // setSuccess(true);
+      const loginFormData = new FormData();
+      loginFormData.append("username", phone)
+      loginFormData.append("password", password)
+
+      try {
+          // make axios post request
+          const response = await axios({
+              method: "post",
+              url: login_api,
+              data: loginFormData,
+              headers: { "Content-Type": "multipart/form-data" },
+          })
+              .then(response => {
+                  console.log(response.request.responseURL);
+                  if (response.request.responseURL == "https://telesfor.herokuapp.com/login") {
+                      window.location = "/lkdoctor"
+                      setSuccess(true);
+                  } else {
+                      setErrorMessage('Неверный логин или пароль')
+                  }
+              });
+      } catch (error) {
+          console.log(error)
+      }
     } catch (err) {
       console.log(err);
       if (!err?.response) {
@@ -95,7 +119,7 @@ function Login() {
                   {phoneFocus && phone && !validPhone && (
                     <p id="uidnote">
                       Допустимые символы: 0-9<br />
-                      Формат ввода: +7XXXXXXXXXX<br />
+                      Формат ввода: 7XXXXXXXXXX<br />
                     </p>
                   )}
                 </div>

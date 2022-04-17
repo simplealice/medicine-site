@@ -1,0 +1,23 @@
+.obshA {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+.photoShell {
+    display: inline-block;
+
+}
+.editor {
+    flex: 1 1 25%;
+}
+
+.firstNameA, .lastNameA, .patronymicA, .educationA, .workExperienceA {
+    text-align: left;
+    padding-top: 20px;
+    padding-left: 100px;
+}
+.firstNameTitleA, .lastNameTitleA, .patronymicTitleA, .educationTitleA, .workExperienceTitleA {
+    display: inline;
+    color: #0a3481;
+    font-size: 20px;
+}
