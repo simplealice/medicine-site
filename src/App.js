@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import './App.css';
 import Login from "./pages/Login";
 import LoginAdmin from "./pages/LoginAdmin";
@@ -8,8 +8,8 @@ import Patient from "./pages/Patient";
 import Tables from "./pages/Tables";
 import LKAdmin from "./pages/LKAdmin";
 import Doctors from "./pages/Doctors";
-import Chats from "./pages/Chats";
 import PatientsAdmin from "./pages/PatientsAdmin";
+import PatientsResults from "./pages/PatientResults"
 import { Routes, Route } from "react-router-dom";
 import Layout from "./routs/Layout";
 
@@ -25,6 +25,7 @@ function App() {
         <Route path="patients" element={<Patients />} />
         <Route path="patient" element={<Patient />} />
         <Route path="tables" element={<Tables />} />
+        <Route path="patientres" element={<PatientsResults />} />
         {/*admin's roots*/}
         <Route path="lkadmin" element={<LKAdmin />} />
         <Route path="doctors" element={<Doctors />} />

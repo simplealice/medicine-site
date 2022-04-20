@@ -1,24 +1,45 @@
 import React, { useEffect, useState } from "react";
 import '../styles/doctorStyle.css'
 import '../styles/listsStyle.css'
+import AuthService from "../routs/AuthService";
 import axios from 'axios';
 
 function LKAdmin() {
 
+  const currentUser = AuthService.getCurrentUser();
 
-  const [doctors, setDoctors] = useState([]);
+  const doc = 'Bearer ' + currentUser.accessToken;
 
-  const getDoctors = () => {
-    axios.get('https://telesfor.herokuapp.com/api/users/doctors')
-      .then((response) => {
-        console.log(response.data);
-        setDoctors(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+  var res;
+
+  const [admin, setAdmin] = useState([]);
+
+  const getAdmin = () => {
+    try {
+      var config = {
+        method: 'get',
+        url: 'https://telesfor-noauth.herokuapp.com/api/users/current',
+        headers: {
+          'Authorization': doc,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      axios(config)
+        .then((response) => {
+          res = response.data;
+          console.log(response.data);
+          setAdmin(response.data);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
+  useEffect(() => {
+    getAdmin();
+    setImage('https://thunderbird-mozilla.ru/images/big-images/kak-dobavit-uchetnuyu-zapis-v-mozilla-thunderbird/kak-dobavit-uchetnuyu-zapis-v-mozilla-thunderbird.jpg')
+  }, []);
 
   const [image, setImage] = useState([]);
 
@@ -48,7 +69,7 @@ function LKAdmin() {
       <div id="headShell">
         <h1 id="title">Telesfor</h1>
       </div>
-      <div className="exit"><a href="/">Выход</a></div>
+      <div className="exit"><a href="/">выход</a></div>
       <nav>
         <ul className="topmenu">
           <li><a href="lkadmin" className="active">Личный кабинет</a></li>
@@ -73,29 +94,29 @@ function LKAdmin() {
           </div>
 
           <div className="editor" id="editor">
-          <div className="lastNameShell">
+            <div className="lastNameShell">
               <p className="lastNameTitle" id="lastNameTitle">Фамилия: </p>
-              <input defaultValue="Мишуткин" className="lastName" id="lastName" />
+              <input defaultValue={admin.lastName} className="lastName" id="lastName" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="firstNameShell">
               <p className="firstNameTitle" id="firstNameTitle">Имя: </p>
-              <input defaultValue="Лев" className="firstName" id="firstName" />
+              <input defaultValue={admin.firstName} className="firstName" id="firstName" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="patronymicShell">
               <p className="patronymicTitle" id="patronymicTitle">Отчество: </p>
-              <input defaultValue="Евгеньевич" className="patronymic" id="patronymic" />
+              <input defaultValue={admin.patronymic} className="patronymic" id="patronymic" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="educationShell">
               <p className="educationTitle" id="educationTitle">Образование: </p>
-              <input defaultValue="РНИМУ им. Н.И. Пирогова: 2000-2006" className="education" id="education" />
+              <input defaultValue={admin.education} className="education" id="education" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="workExperienceShell">
               <p className="workExperienceTitle" id="workExperienceTitle">Опыт работы: </p>
-              <input defaultValue="8 лет" className="workExperience" id="workExperience" />
+              <input defaultValue={admin.workExperience} className="workExperience" id="workExperience" />
               <b className="editIcon">&#9745;</b>
             </div>
           </div>

@@ -1,25 +1,28 @@
 th, td {
     border-style: solid;
     border-width: 1px 1px 1px 1px;
-    border-color: #0a3481;
+    border-color: rgb(15, 134, 182);
 }
 section {
     margin-top: 30px;
 }
 table {
+    margin-top: 30px;
     background: white;
     max-width: 100%;
     width: 100%;
     border-collapse: collapse;
 }
 th {
-    color: #0a3481;
-    border-bottom: 2px solid #0a3481;
+    color: white;
+    letter-spacing: 2px;
+    border-bottom: 2px solid rgb(15, 134, 182);
     padding: 10px 8px;
     flex-grow: 1;
-    background: #dce0e3
+    background: rgb(16, 176, 240);
+    font-size: 14px;
 }
 td {
-    color: #669;
+    color: #0a3481;
     padding: 9px 8px;
 }

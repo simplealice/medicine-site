@@ -1,7 +1,7 @@
 import axios from 'axios';
-import authHeader from './auth-header';
+import authHeader from './AuthHeader';
 
-const API_URL = 'https://telesfor.herokuapp.com/api/users/';
+const API_URL = 'https://telesfor-noauth.herokuapp.com/api/users/';
 
 // https://telesfor.herokuapp.com/api/questionnaire/patient?id=1
 class UserService {

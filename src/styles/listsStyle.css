@@ -1,5 +1,6 @@
 .patientslist > li, .doctorslist > li {
     list-style: none;
+    color: #0a3481;
     border-bottom: 2px solid rgb(15, 134, 182);
     padding: 20px;
     text-align: left;
@@ -27,3 +28,9 @@
     60% {transform: scale(1);} 
 }
   
+.res {
+    margin-left: 20px;
+    font-weight: bold;
+    color: #0a3481;
+    font-size: 20px;
+}

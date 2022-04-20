@@ -1,15 +1,14 @@
 import React, { useRef, useEffect, useState } from "react";
 import '../styles/loginStyle.css';
 import { Navigate } from 'react-router-dom';
-import axios from "axios";
+import AuthService from "../routs/AuthService";
 
 function Login() {
   const userRef = useRef();
   const errRef = useRef();
 
-  const phoneRegex = /^((7)+([0-9]){10})$/;
+  //const phoneRegex = /^((7)+([0-9]){10})$/;
   const passwordRegex = /^[a-zA-Z0-9!@#$%^+=]{4,}$/;
-  const login_api = 'https://telesfor.herokuapp.com/login';
 
   const [phone, setPhone] = useState('')
   const [validPhone, setValidPhone] = useState(false)
@@ -28,10 +27,11 @@ function Login() {
 
   /*Phone validation*/
   useEffect(() => {
-    const result = phoneRegex.test(phone);
-    console.log(result);
+    //const result = phoneRegex.test(phone);
+    //console.log(result);
     console.log(phone);
-    setValidPhone(result);
+    //setValidPhone(result);
+    setValidPhone(true);
   }, [phone])
 
   /*Password*/
@@ -48,47 +48,23 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const v1 = phoneRegex.test(phone);
+    //const v1 = phoneRegex.test(phone);
     const v2 = passwordRegex.test(password);
-    if (!v1 || !v2) {
+    if (!v2) {
+    //if (!v1 || !v2) {
       setErrorMessage("Invalid Entry");
       return;
     }
     try {
-      // const response = await axios.post(login_api,
-      //   {
-      //     username: phone,
-      //     password: password
-      //   }
-      // );
-      // console.log(response.data);
-      // console.log(response.accessToken);
-      // console.log(JSON.stringify(response));
-      // setSuccess(true);
-      const loginFormData = new FormData();
-      loginFormData.append("username", phone)
-      loginFormData.append("password", password)
 
-      try {
-          // make axios post request
-          const response = await axios({
-              method: "post",
-              url: login_api,
-              data: loginFormData,
-              headers: { "Content-Type": "multipart/form-data" },
-          })
-              .then(response => {
-                  console.log(response.request.responseURL);
-                  if (response.request.responseURL == "https://telesfor.herokuapp.com/login") {
-                      window.location = "/lkdoctor"
-                      setSuccess(true);
-                  } else {
-                      setErrorMessage('Неверный логин или пароль')
-                  }
-              });
-      } catch (error) {
-          console.log(error)
-      }
+      AuthService.login(phone, password).then(
+        () => {
+          window.location = "/lkdoctor"
+        },
+        error => {
+          setErrorMessage('Неверный логин или пароль')
+        }
+      );
     } catch (err) {
       console.log(err);
       if (!err?.response) {

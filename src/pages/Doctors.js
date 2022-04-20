@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import '../styles/doctorStyle.css'
 import '../styles/listsStyle.css'
+import AuthService from "../routs/AuthService";
 import axios from 'axios';
 import { Link } from "react-router-dom";
 
@@ -9,10 +10,22 @@ function Doctors() {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const currentUser = AuthService.getCurrentUser();
+
+  const doc = 'Bearer ' + currentUser.accessToken;
+
   const getDoctors = () => {
     try {
-      axios.get('https://telesfor-noauth.herokuapp.com/api/users/doctors')
-      //axios.get('https://telesfor.herokuapp.com/api/users/doctors')
+      var config = {
+        method: 'get',
+        url: 'https://telesfor-noauth.herokuapp.com/api/users/doctors',
+        headers: {
+          'Authorization': doc,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      axios(config)
         .then((response) => {
           console.log(response.data);
           setDoctors(response.data);
@@ -39,7 +52,7 @@ function Doctors() {
       <div id="headShell">
         <h1 id="title">Telesfor</h1>
       </div>
-      <div className="exit"><a href="/">Выход</a></div>
+      <div className="exit"><a href="/">выход</a></div>
       <nav>
         <ul className="topmenu">
           <li><a href="lkadmin">Личный кабинет</a></li>
@@ -53,7 +66,7 @@ function Doctors() {
           <h1 id="textOnPage">Врачи</h1>
           <ul className="doctorslist">
             {
-              doctors.map(doctor => <li key={doctor.id}>{doctor.firstName + " " + doctor.lastName + " " + doctor.patronymic}
+              doctors.map(doctor => <li key={doctor.id}>{doctor.lastName + " " + doctor.firstName + " " + doctor.patronymic}
                 <Link to={'#'} onClick={() => { if (window.confirm('Вы подтверждаете удаление?')) { deleteHandler(doctor.id) }; }}>
                   <b className="deleteIcon">&#128465;</b>
                 </Link>

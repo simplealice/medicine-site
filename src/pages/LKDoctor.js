@@ -1,101 +1,51 @@
 import React, { useEffect, useState } from "react";
 import '../styles/doctorStyle.css'
 import '../styles/lkStyle.css'
-import axios from 'axios';
 import EditField from "../modals/EditField";
+import AuthService from "../routs/AuthService";
+import axios from "axios";
 
 function LKDoctor() {
 
-  const [doctors, setDoctors] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [doctorInfo, setDoctorInfo] = useState([]);
+  // const [loading, setLoading] = useState(false);
 
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
 
-  const getDoctors = () => {
+  const currentUser = AuthService.getCurrentUser();
+
+  const doc = 'Bearer ' + currentUser.accessToken;
+
+  var res;
+
+  const getDoctorInfo = () => {
     try {
-      axios.get('https://telesfor-noauth.herokuapp.com/api/users/current')
+      var config = {
+        method: 'get',
+        url: 'https://telesfor-noauth.herokuapp.com/api/users/current',
+        headers: {
+          'Authorization': doc,
+          'Content-Type': 'application/json'
+        }
+      };
+
+      axios(config)
         .then((response) => {
+          res = response.data;
           console.log(response.data);
-          setDoctors(response.data);
+          setDoctorInfo(response.data);
         });
-      setLoading(true);
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    getDoctors();
+    getDoctorInfo();
+    setImage('https://thunderbird-mozilla.ru/images/big-images/kak-dobavit-uchetnuyu-zapis-v-mozilla-thunderbird/kak-dobavit-uchetnuyu-zapis-v-mozilla-thunderbird.jpg')
   }, []);
-
-  // function btnclk() {
-  //   // if (!name.contentEditable) {
-  //   //   return name.contentEditable = true
-  //   // };
-  //   // if (name.contentEditable == "false")
-  //   //     {
-  //   //       name.contentEditable = "true";
-  //   //       // content_div.style.display = "inline";
-  //   //       // textarea.innerHTML = div.innerHTML;
-  //   //       // button.value = "Редактировать";
-  //   //     }
-  //   // name.disabled = true;
-  //   setBtnClicked(true)
-  // };
-  function foo() {
-    // RETURN the promise
-    return axios.get("https://telesfor-noauth.herokuapp.com/api/users/doctors").then(function (response) {
-      return response;
-    });
-  }
-
-  var item = [];
-  var res = foo().then(function (response) {
-    item.push(response.data[1]);
-  });
-  console.log(item);
-
-  // function changeText () {
-  //   var editBtn = document.getElementById('editBtn');
-  //   var editable = document.getElementById('title');
-  //   // var editables = document.querySelectorAll('#title, #author, #content')
-
-  //   editBtn.addEventListener('click', function(e) {
-  //     if (editable.isContentEditable) {
-  //       console.log(false)
-  //       editable.contentEditable = 'false'
-  //       editBtn.innerHTML = 'Enable Editing';
-  //       editBtn.style.backgroundColor = '#F96';
-  //     } else {
-  //       editable.contentEditable = 'true'
-  //       editBtn.innerHTML = 'Save Changes';
-  //       editBtn.style.backgroundColor = '#6F9';
-  //     }
-  //     // if (!editables[0].isContentEditable) {
-  //     //   console.log(editables[0].contentEditable)
-  //     //   editables[0].contentEditable = 'true';
-  //     //   editables[1].contentEditable = 'true';
-  //     //   editables[2].contentEditable = 'true';
-  //     //   editBtn.innerHTML = 'Save Changes';
-  //     //   editBtn.style.backgroundColor = '#6F9';
-  //     // } else {
-  //     //   // выключаем режим редактирования
-  //     //   console.log(editables[0].contentEditable)
-  //     //   editables[0].contentEditable = 'false';
-  //     //   editables[1].contentEditable = 'false';
-  //     //   editables[2].contentEditable = 'false';
-  //     //   // изменяем текст и цвет кнопки
-  //     //   editBtn.innerHTML = 'Enable Editing';
-  //     //   editBtn.style.backgroundColor = '#F96';
-  //     //   // сохраняем данные в localStorage 
-  //     //   for (var i = 0; i < editables.length; i++) {
-  //     //     localStorage.setItem(editables[i].getAttribute('id'), editables[i].innerHTML);
-  //     //   }
-  //     // }
-  //   });
-  // }
 
   const [image, setImage] = useState([]);
 
@@ -124,7 +74,7 @@ function LKDoctor() {
       <div id="headShell">
         <h1 id="title">Telesfor</h1>
       </div>
-      <div className="exit"><a href="/">Выход</a></div>
+      <div className="exit"><a href="/">выход</a></div>
       <nav>
         <ul className="topmenu">
           <li><a href="lkdoctor" className="active">Личный кабинет</a></li>
@@ -172,27 +122,27 @@ function LKDoctor() {
           <div className="editor" id="editor">
             <div className="lastNameShell">
               <p className="lastNameTitle" id="lastNameTitle">Фамилия: </p>
-              <input defaultValue="Мишуткин" className="lastName" id="lastName" />
+              <input defaultValue={doctorInfo.lastName} className="lastName" id="lastName" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="firstNameShell">
               <p className="firstNameTitle" id="firstNameTitle">Имя: </p>
-              <input defaultValue="Лев" className="firstName" id="firstName" />
+              <input defaultValue={doctorInfo.firstName} className="firstName" id="firstName" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="patronymicShell">
               <p className="patronymicTitle" id="patronymicTitle">Отчество: </p>
-              <input defaultValue="Евгеньевич" className="patronymic" id="patronymic" />
+              <input defaultValue={doctorInfo.patronymic} className="patronymic" id="patronymic" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="educationShell">
               <p className="educationTitle" id="educationTitle">Образование: </p>
-              <input defaultValue="РНИМУ им. Н.И. Пирогова: 2000-2006" className="education" id="education" />
+              <input defaultValue={doctorInfo.education} className="education" id="education" />
               <b className="editIcon">&#9745;</b>
             </div>
             <div className="workExperienceShell">
               <p className="workExperienceTitle" id="workExperienceTitle">Опыт работы: </p>
-              <input defaultValue="8 лет" className="workExperience" id="workExperience" />
+              <input defaultValue={doctorInfo.workExperience} className="workExperience" id="workExperience" />
               <b className="editIcon">&#9745;</b>
             </div>
           </div>
